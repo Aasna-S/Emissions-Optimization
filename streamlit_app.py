@@ -2,7 +2,12 @@ import streamlit as st
 import pandas as pd
 
 # Path to the Excel file
-file_path = "https://raw.githubusercontent.com/[Aasna-S]/[repo]/[main]/project data without current (8) (4).xlsx"
+from urllib.parse import quote
+
+# Correct and encode the URL
+raw_url = "https://raw.githubusercontent.com/Aasna-S/repo/main/project data without current (8) (4).xlsx"
+encoded_url = quote(raw_url, safe='/:')
+file_path = encoded_url
 
 
 
