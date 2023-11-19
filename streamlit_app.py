@@ -1,8 +1,6 @@
 import streamlit as st
+import plotly.express as px
 import pandas as pd
-import plotly.express as px 
-# Path to the Excel file
-from urllib.parse import quote
 
 # Set page config
 st.set_page_config(page_title="Canada Net Zero", page_icon="🌍", layout="wide")
