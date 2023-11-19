@@ -43,24 +43,19 @@ def create_dataframe_from_model_results():
 
   } 
   records = []
-  for year, year_data in data.items():
-        for tech, tech_data in year_data.items():
-            # Check if all keys are present in tech_data
-            if all(key in tech_data for key in ['Generation', 'Emissions', 'Cost', 'Capacity']):
-                record = {
-                    'Year': year,
-                    'Technology': tech,
-                    'Generation': tech_data['Generation'],
-                    'Emissions': tech_data['Emissions'],
-                    'Cost': tech_data['Cost'],
-                    'Capacity': tech_data['Capacity']
-                }
-                records.append(record)
-            else:
-                # Log an error or handle missing data
-                print(f"Missing data for {tech} in {year}")
+    for year, technologies in data.items():
+        for tech, values in technologies.items():
+            record = {
+                'Year': year,
+                'Technology': tech,
+                'Generation': values['Generation'],
+                'Emissions': values['Emissions'],
+                'Cost': values['Cost'],
+                'Capacity': values['Capacity']
+            }
+            records.append(record)
 
-  return pd.DataFrame(records)
+    return pd.DataFrame(records)
 
 
 df = create_dataframe_from_model_results()
