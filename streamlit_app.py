@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-
+import plotly.express as px 
 # Path to the Excel file
 from urllib.parse import quote
 
