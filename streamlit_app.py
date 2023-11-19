@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 
 # Path to the Excel file
-file_path = '/mnt/data/project data without current (8) (4).xlsx'
+file_path = r"C:\Users\Aasna\Downloads\project data without current (8) (4).xlsx"
 
 # Function to load data from a specific sheet
 def load_data(sheet_name):
