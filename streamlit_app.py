@@ -43,11 +43,17 @@ def create_dataframe_from_model_results():
 
   } 
   records = []
-  for year, technologies in data.items():
-        for tech, values in technologies.items():
-            record = values.copy()
-            record['Year'] = year
-            record['Technology'] = tech.capitalize()
+    for year, year_data in data.items():
+        for tech, tech_data in year_data.items():
+            # Create each row as a dictionary
+            record = {
+                'Year': year,
+                'Technology': tech,
+                'Generation': tech_data['Generation'],
+                'Emissions': tech_data['Emissions'],
+                'Cost': tech_data['Cost'],
+                'Capacity': tech_data['Capacity']
+            }
             records.append(record)
 
   return pd.DataFrame(records)
