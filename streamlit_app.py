@@ -2,7 +2,9 @@ import streamlit as st
 import pandas as pd
 
 # Path to the Excel file
-file_path = "project data without current (8) (4).xlsx"
+file_path = "https://raw.githubusercontent.com/[Aasna-S]/[repo]/[main]/project data without current (8) (4).xlsx"
+
+
 
 sheet_names = ['Electricity Demand', 'Generation Output Targets', 'Generation Capacity Targets',
                'Emissions Factor', 'Cost', 'Emissions Cap', 'Capital Expenditure Budget',
