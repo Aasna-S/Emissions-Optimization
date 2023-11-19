@@ -12,7 +12,7 @@ nuc=9590000000.0*2
 def create_dataframe_from_model_results():
   data = {
     # Data for 2025
-    data_2025 = {
+    2025:{
         'Technology': ['wind', 'solar', 'hydro', 'nuclear', 'natural_gas', 'geothermal', 'oil', 'coal'],
         'Generation': [60429.05, 11707.13, 401733.6, 78278.04, 87486.85, 8281.2, 1355.5, 3044.54],
         'Emissions': [0.0, 0.0, 0.0, 0.0, 32.3701345, 0.0, 0.501535, 2.3138504],
@@ -22,7 +22,7 @@ def create_dataframe_from_model_results():
     }
     
     # Data for 2030
-    data_2030 = {
+    2030:{
         'Technology': ['wind', 'solar', 'hydro', 'nuclear', 'natural_gas', 'geothermal', 'oil', 'coal'],
         'Generation': [92547.75, 15214.42, 443103.1, 87724.81, 77098.86, 7526.04, 969.57, 0.0],
         'Emissions': [0.0, 0.0, 0.0, 0.0, 28.5265782, 0.0, 0.35874090000000003, 0.0],
@@ -32,7 +32,7 @@ def create_dataframe_from_model_results():
     }
     
     # Data for 2035
-    data_2035 = {
+    2035:{
         'Technology': ['wind', 'solar', 'hydro', 'nuclear', 'natural_gas', 'geothermal', 'oil', 'coal'],
         'Generation': [184305.21, 42161.81, 465887.5, 131692.29, 1340.0174999999945, 19716.07, 0.0, 0.0],
         'Emissions': [0.0, 0.0, 0.0, 0.0, 0.49580647499999797, 0.0, 0.0, 0.0],
