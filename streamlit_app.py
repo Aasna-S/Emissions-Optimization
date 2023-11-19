@@ -42,15 +42,15 @@ def create_dataframe_from_model_results():
     }
 
   } 
-    records = []
-    for year, technologies in data.items():
+  records = []
+  for year, technologies in data.items():
         for tech, values in technologies.items():
             record = values.copy()
             record['Year'] = year
             record['Technology'] = tech.capitalize()
             records.append(record)
 
-    return pd.DataFrame(records)
+  return pd.DataFrame(records)
 
 
 df = create_dataframe_from_model_results()
