@@ -50,7 +50,7 @@ df = create_dataframe_from_model_results()
 # Dashboard layout
 st.title("Canada Net Zero Power Generation Dashboard")
 
-# Tab layout
+# Layout using tabs
 tab1, tab2, tab3 = st.tabs(["Generation Overview", "Emissions Analysis", "Cost Analysis"])
 
 with tab1:
@@ -58,14 +58,14 @@ with tab1:
     fig1 = px.bar(df, x='Year', y='Generation', color='Technology', barmode='group')
     st.plotly_chart(fig1)
 
-# Tab 2: Emissions Analysis
 with tab2:
     st.header("Emissions by Technology and Year")
     fig2 = px.bar(df, x='Year', y='Emissions', color='Technology', barmode='group')
     st.plotly_chart(fig2)
 
-# Tab 3: Cost Analysis
 with tab3:
     st.header("Cost Analysis by Technology and Year")
     fig3 = px.bar(df, x='Year', y='Cost', color='Technology', barmode='group')
     st.plotly_chart(fig3)
+
+# You can add more Streamlit widgets or visualizations as needed
