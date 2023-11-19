@@ -53,7 +53,6 @@ st.title("Canada Net Zero Power Generation Dashboard")
 # Tab layout
 tab1, tab2, tab3 = st.tabs(["Generation Overview", "Emissions Analysis", "Cost Analysis"])
 
-# Tab 1: Generation Overview
 with tab1:
     st.header("Generation Overview by Technology and Year")
     fig1 = px.bar(df, x='Year', y='Generation', color='Technology', barmode='group')
