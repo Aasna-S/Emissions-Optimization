@@ -59,8 +59,7 @@ with tab1:
     st.header("Generation Overview by Technology and Year")
     fig1 = px.bar(df, x='Year', y='Generation', color='Technology', barmode='group')
     st.plotly_chart(fig1)
-
-with tab1:
+  
     st.subheader("Interactive Line Chart for Energy Generation")
     selected_tech = st.selectbox("Select Technology", df['Technology'].unique())
     filtered_data = df[df['Technology'] == selected_tech]
@@ -73,7 +72,6 @@ with tab2:
     fig2 = px.bar(df, x='Year', y='Emissions', color='Technology', barmode='group')
     st.plotly_chart(fig2)
 
-with tab2:
     st.subheader("Comparison of Technologies")
     year_to_compare = st.select_slider("Select Year", options=df['Year'].unique(), value=df['Year'].max())
     compare_data = df[df['Year'] == year_to_compare]
@@ -84,7 +82,7 @@ with tab3:
     st.header("Cost Analysis by Technology and Year")
     fig3 = px.bar(df, x='Year', y='Cost', color='Technology', barmode='group')
     st.plotly_chart(fig3)
-with tab3:
+  
     st.subheader("Detailed Data Table")
     st.dataframe(df)
 
