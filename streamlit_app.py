@@ -59,11 +59,6 @@ with tab1:
     total_emission = total_emission = filtered_df['Emissions'].sum()
     total_cost = filtered_df['Cost'].sum()
     
-    # Layout using containers and columns
-    kpi1, kpi2 = st.columns(2)
-    kpi1.metric("Total Emissions", f"{total_emission:.2f}",delta=None, delta_color="inverse")
-    kpi2.metric("Total Cost", f"${total_cost:,.2f}",delta=None, delta_color="inverse")
-    
     fig1 = px.bar(df, x='Year', y='Generation', color='Technology', barmode='group')
     st.plotly_chart(fig1)
 
