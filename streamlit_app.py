@@ -55,13 +55,13 @@ with tab1:
     else:
         filtered_df = df[df['Year'] == year_filter]
     # KPIs
-    total_emission = filtered_df['Emissions (MTCO2e)'].sum()
-    total_cost = filtered_df['Cost (CAD)'].sum()
+    total_emission = total_emission = filtered_df['Emissions'].sum()
+    total_cost = filtered_df['Cost'].sum()
     
     # Layout using containers and columns
     kpi1, kpi2 = st.columns(2)
-    kpi1.metric("Total Emissions (MTCO2e)", f"{total_emission:.2f}",delta=None, delta_color="inverse")
-    kpi2.metric("Total Cost (CAD)", f"${total_cost:,.2f}",delta=None, delta_color="inverse")
+    kpi1.metric("Total Emissions", f"{total_emission:.2f}",delta=None, delta_color="inverse")
+    kpi2.metric("Total Cost", f"${total_cost:,.2f}",delta=None, delta_color="inverse")
     # Charts layout
     chart1, chart2 = st.columns(2)
     with chart1:
