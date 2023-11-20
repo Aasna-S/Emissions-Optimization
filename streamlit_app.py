@@ -41,7 +41,7 @@ def create_dataframe_from_model_results():
 df = create_dataframe_from_model_results()
 
 # Dashboard layout
-st.title("Canada Net Zero Power Generation Dashboard")
+st.title("Canada Net Zero Power Generation")
 
 # Layout using tabs
 tab1, tab2, tab3 = st.tabs(["Generation Overview", "Emissions Analysis", "Cost Analysis"])
