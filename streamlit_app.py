@@ -75,6 +75,15 @@ with tab1:
         filtered_data = df[df['Technology'] == selected_tech]
         fig_line = px.line(filtered_data, x="Year", y="Generation", title=f"Generation Over Time for {selected_tech}")
         st.plotly_chart(fig_line)
+    col1, col2 = st.columns(2)
+    with col1:
+        st.markdown("### Cost by Source")
+        fig3 = px.bar(filtered_df.sort_values('Cost (CAD)', ascending=False), x='Source', y='Cost (CAD)', color='Source')
+        #fig3.update_layout(showlegend=False)
+        st.plotly_chart(fig3)
+    with col2:
+        st.markdown("### Detailed Data View")
+        st.dataframe(filtered_df)
 
 with tab2:
     st.header("Emissions by Technology and Year")
