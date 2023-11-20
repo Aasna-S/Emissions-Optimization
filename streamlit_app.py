@@ -50,40 +50,48 @@ def create_dataframe_from_model_results():
 df = create_dataframe_from_model_results()
 
 # Dashboard layout
-st.title("Canada Net Zero Power Generation Dashboard")
+st.title("Canada Net Zero Power Generation")
 
 # Layout using tabs
 tab1, tab2, tab3 = st.tabs(["Generation Overview", "Emissions Analysis", "Cost Analysis"])
 
+# Layout using tabs
+tab1, tab2, tab3 = st.tabs(["Generation Overview", "Emissions Analysis", "Cost Analysis"])
+
+# Tab 1: Generation Overview
 with tab1:
     st.header("Generation Overview by Technology and Year")
     fig1 = px.bar(df, x='Year', y='Generation', color='Technology', barmode='group')
     st.plotly_chart(fig1)
-  
+
+    # Interactive Line Chart
     st.subheader("Interactive Line Chart for Energy Generation")
     selected_tech = st.selectbox("Select Technology", df['Technology'].unique())
     filtered_data = df[df['Technology'] == selected_tech]
     fig_line = px.line(filtered_data, x="Year", y="Generation", title=f"Generation Over Time for {selected_tech}")
     st.plotly_chart(fig_line)
 
-
+# Tab 2: Emissions Analysis
 with tab2:
     st.header("Emissions by Technology and Year")
     fig2 = px.bar(df, x='Year', y='Emissions', color='Technology', barmode='group')
     st.plotly_chart(fig2)
 
+    # Comparison Chart
     st.subheader("Comparison of Technologies")
     year_to_compare = st.select_slider("Select Year", options=df['Year'].unique(), value=df['Year'].max())
     compare_data = df[df['Year'] == year_to_compare]
     fig_compare = px.bar(compare_data, x='Technology', y='Generation', title=f"Generation Comparison for {year_to_compare}")
     st.plotly_chart(fig_compare)
 
+# Tab 3: Cost Analysis
 with tab3:
     st.header("Cost Analysis by Technology and Year")
     fig3 = px.bar(df, x='Year', y='Cost', color='Technology', barmode='group')
     st.plotly_chart(fig3)
-  
+
+    # Data Table
     st.subheader("Detailed Data Table")
     st.dataframe(df)
 
-# You can add more Streamlit widgets or visualizations as needed
+# Add more widgets or visualizations as needed
