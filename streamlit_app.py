@@ -62,7 +62,7 @@ with tab1:
     kpi1, kpi2 = st.columns(2)
     kpi1.metric("Total Emissions", f"{total_emission:.2f}",delta=None, delta_color="inverse")
     kpi2.metric("Total Cost", f"${total_cost:,.2f}",delta=None, delta_color="inverse")
-    # Charts layout
+    # Charts layout 
     chart1, chart2 = st.columns(2)
     with chart1:
         fig1 = px.bar(df, x='Year', y='Generation', color='Technology', barmode='group')
