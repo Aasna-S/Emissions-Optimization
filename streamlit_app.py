@@ -47,16 +47,6 @@ tab1, tab2, tab3 = st.tabs(["Generation Overview", "Emissions Analysis", "Cost A
 
 with tab1:
     st.header("Generation Overview by Technology and Year")
-    year_options = ['All'] + sorted(df['Year'].unique().tolist())
-    year_filter = st.selectbox("Select the Year", options=year_options)
-    if year_filter == 'All':
-        filtered_df = df
-    else:
-        filtered_df = df[df['Year'] == year_filter]
-    # KPIs
-    total_emission = total_emission = filtered_df['Emissions'].sum()
-    total_cost = filtered_df['Cost'].sum()
-    
     fig1 = px.bar(df, x='Year', y='Generation', color='Technology', barmode='group')
     st.plotly_chart(fig1)
 
