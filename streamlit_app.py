@@ -19,7 +19,7 @@ def create_dataframe_from_model_results():
         {'Year': 2025, 'Technology': 'oil', 'Generation': 0.0, 'Capacity': 1379.91, 'Emissions': 35.19, 'Cost': 46757597101.6181},
         {'Year': 2025, 'Technology': 'coal', 'Generation': 0.0, 'Capacity': 8184.54, 'Emissions': 35.19, 'Cost': 46757597101.6181}
     ]
-
+    df_2025 = pd.DataFrame(data_2025)
     # Data for 2030
     data_2030 = [
         {'Year': 2030, 'Technology': 'wind', 'Generation': 92547.75, 'Capacity': 193168.44, 'Emissions': 24.89, 'Cost': 56348716040.62008},
@@ -31,7 +31,7 @@ def create_dataframe_from_model_results():
         {'Year': 2030, 'Technology': 'oil', 'Generation': 0.0, 'Capacity': 0.0, 'Emissions': 24.89, 'Cost': 56348716040.62008},
         {'Year': 2030, 'Technology': 'coal', 'Generation': 0.0, 'Capacity': 0.0, 'Emissions': 24.89, 'Cost': 56348716040.62008}
     ]
-
+    df_2030 = pd.DataFrame(data_2030)
     # Data for 2035
     data_2035 = [
         {'Year': 2035, 'Technology': 'wind', 'Generation': 184000.0, 'Capacity': 321947.4, 'Emissions': 18.07326744, 'Cost': 69704387961.0},
@@ -43,9 +43,8 @@ def create_dataframe_from_model_results():
         {'Year': 2035, 'Technology': 'oil', 'Generation': 0.0, 'Capacity': 0.0, 'Emissions': 18.07326744, 'Cost': 69704387961.0},
         {'Year': 2035, 'Technology': 'coal', 'Generation': 0.0, 'Capacity': 0.0, 'Emissions': 18.07326744, 'Cost': 69704387961.0}
     ]
-
-    # Combine all data into one DataFrame
-    return pd.DataFrame(data_2025 + data_2030 + data_2035)
+    df_2035 = pd.DataFrame(data_2035)
+    return pd.concat([df_2025, df_2030, df_2035], ignore_index=True)
 
 df = create_dataframe_from_model_results()
 # Dashboard layout
