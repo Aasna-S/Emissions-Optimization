@@ -63,28 +63,16 @@ with tab1:
     kpi1, kpi2 = st.columns(2)
     kpi1.metric("Total Emissions", f"{total_emission:.2f}",delta=None, delta_color="inverse")
     kpi2.metric("Total Cost", f"${total_cost:,.2f}",delta=None, delta_color="inverse")
-    # Charts layout 
-    chart1, chart2 = st.columns(2)
-    with chart1:
-        fig1 = px.bar(df, x='Year', y='Generation', color='Technology', barmode='group')
-        st.plotly_chart(fig1)
+    
+    fig1 = px.bar(df, x='Year', y='Generation', color='Technology', barmode='group')
+    st.plotly_chart(fig1)
 
-    with chart2: 
-        # Interactive Line Chart
-        st.subheader("Interactive Line Chart for Energy Generation")
-        selected_tech = st.selectbox("Select Technology", df['Technology'].unique())
-        filtered_data = df[df['Technology'] == selected_tech]
-        fig_line = px.line(filtered_data, x="Year", y="Generation", title=f"Generation Over Time for {selected_tech}")
-        st.plotly_chart(fig_line)
-    col1, col2 = st.columns(2)
-    with col1:
-        st.markdown("### Cost by Source")
-        fig3 = px.bar(filtered_df.sort_values('Cost (CAD)', ascending=False), x='Source', y='Cost (CAD)', color='Source')
-        #fig3.update_layout(showlegend=False)
-        st.plotly_chart(fig3)
-    with col2:
-        st.markdown("### Detailed Data View")
-        st.dataframe(filtered_df)
+    st.subheader("Interactive Line Chart for Energy Generation")
+    selected_tech = st.selectbox("Select Technology", df['Technology'].unique())
+    filtered_data = df[df['Technology'] == selected_tech]
+    fig_line = px.line(filtered_data, x="Year", y="Generation", title=f"Generation Over Time for {selected_tech}")
+    st.plotly_chart(fig_line)
+    
 
 with tab2:
     st.header("Emissions by Technology and Year")
