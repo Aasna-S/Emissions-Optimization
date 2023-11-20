@@ -4,8 +4,6 @@ import pandas as pd
 
 # Set page config
 st.set_page_config(page_title="Canada Net Zero", page_icon="🌍", layout="wide")
-
-@st.cache
 # Create a DataFrame from model results
 def create_dataframe_from_model_results():
     data = {
