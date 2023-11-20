@@ -9,35 +9,39 @@ nuc=9590000000.0*2
 # Preparing the data for all the years in separate dataframes as per the provided data
 def create_dataframe_from_model_results():
   data_2025 = {
-        'Year': [2025] * 8,
-        'Technology': ['wind', 'solar', 'hydro', 'nuclear', 'natural_gas', 'geothermal', 'oil', 'coal'],
-        'Generation': [60429.05, 11707.13, 401733.6, 78278.04, 87486.85, 8281.2, 1355.5, 3044.54],
-        'Emissions': [0.0, 0.0, 0.0, 0.0, 32.3701345, 0.0, 0.501535, 2.3138504],
-        'Cost': [129207.58183850002, 19015.305902499997, 3123880.4735999997, 1006592.9719679998, 
-                 130569.74928250001, 96019.520256, 2023.015975, 11645.3655],
-        'Capacity': [18.24, 7.306, 84.912, 12.105, 31.54, 2.583, 3.674, 2.929]
-    }
+    'wind': {'Generation': 60429.05, 'Capacity': 64389.48, 'Emissions': 35.19, 'Cost': 46757597101.6181},
+    'solar': {'Generation': 11707.13, 'Capacity': 12184.92, 'Emissions': 35.19, 'Cost': 46757597101.6181},
+    'hydro': {'Generation': 401733.6, 'Capacity': 401733.6, 'Emissions': 35.19, 'Cost': 46757597101.6181},
+    'nuclear': {'Generation': 140757.76, 'Capacity': 140757.76, 'Emissions': 35.19, 'Cost': 46757597101.6181},
+    'natural_gas': {'Generation': 45137.17, 'Capacity': 106529.07, 'Emissions': 35.19, 'Cost': 46757597101.6181},
+    'geothermal': {'Generation': 8281.2, 'Capacity': 8281.2, 'Emissions': 35.19, 'Cost': 46757597101.6181},
+    'oil': {'Generation': 0.0, 'Capacity': 1379.91, 'Emissions': 35.19, 'Cost': 46757597101.6181},
+    'coal': {'Generation': 0.0, 'Capacity': 8184.54, 'Emissions': 35.19, 'Cost': 46757597101.6181}
+}
   df_2025 = pd.DataFrame(data_2025)
   data_2030 = {
-        'Year': [2030] * 8,
-        'Technology': ['wind', 'solar', 'hydro', 'nuclear', 'natural_gas', 'geothermal', 'oil', 'coal'],
-        'Generation': [92547.75, 15214.42, 443103.1, 87724.81, 77098.86, 7526.04, 969.57, 0.0],
-        'Emissions': [0.0, 0.0, 0.0, 0.0, 28.5265782, 0.0, 0.35874090000000003, 0.0],
-        'Cost': [201840.1644075, 22240.8955886, 3721215.282048, 1590579.7607707, 109313.0766738, 
-                 76791.8738796, 1374.6854331, 0.0],
-        'Capacity': [25.212, 9.496, 88.077, 11.105, 39.714, 2.583, 3.493, 0.0]
-    }
+    'wind': {'Generation': 92547.75, 'Capacity': 193168.44, 'Emissions': 24.89, 'Cost': 56348716040.62008},
+    'solar': {'Generation': 15214.42, 'Capacity': 36554.76, 'Emissions': 24.89, 'Cost': 56348716040.62008},
+    'hydro': {'Generation': 443103.1, 'Capacity': 443103.1, 'Emissions': 24.89, 'Cost': 56348716040.62008},
+    'nuclear': {'Generation': 192045.74, 'Capacity': 192045.74, 'Emissions': 24.89, 'Cost': 56348716040.62008},
+    'natural_gas': {'Generation': 19591.28, 'Capacity': 106529.07, 'Emissions': 24.89, 'Cost': 56348716040.62008},
+    'geothermal': {'Generation': 7526.04, 'Capacity': 8281.2, 'Emissions': 24.89, 'Cost': 56348716040.62008},
+    'oil': {'Generation': 0.0, 'Capacity': 0.0, 'Emissions': 24.89, 'Cost': 56348716040.62008},
+    'coal': {'Generation': 0.0, 'Capacity': 0.0, 'Emissions': 24.89, 'Cost': 56348716040.62008}
+}
+
     
   df_2030 = pd.DataFrame(data_2030)
   data_2035 = {
-        'Year': [2035] * 8,
-        'Technology': ['wind', 'solar', 'hydro', 'nuclear', 'natural_gas', 'geothermal', 'oil', 'coal'],
-        'Generation': [184305.21, 42161.81, 465887.5, 131692.29, 1340.0174999999945, 19716.07, 0.0, 0.0],
-        'Emissions': [0.0, 0.0, 0.0, 0.0, 0.49580647499999797, 0.0, 0.0, 0.0],
-        'Cost': [401956.76164529996, 55469.763708399994, 4225567.012875, 3366763.4369202005, 
-                 1804.9231714499927, 158926.5084132, 0.0, 0.0],
-        'Capacity': [50.706, 25.045, 92.082, 18.559, 38.391, 4.033, 0.0, 0.0]
-    }
+    'wind': {'Generation': 184000.0, 'Capacity': 321947.4, 'Emissions': 18.07326744, 'Cost': 69704387961.0},
+    'solar': {'Generation': 42000.0, 'Capacity': 60924.6, 'Emissions': 18.07326744, 'Cost': 69704387961.0},
+    'hydro': {'Generation': 460000.0, 'Capacity': 460000.0, 'Emissions': 18.07326744, 'Cost': 69704387961.0},
+    'nuclear': {'Generation': 200355.62, 'Capacity': 200355.62, 'Emissions': 18.07326744, 'Cost': 69704387961.0},
+    'natural_gas': {'Generation': 0.0, 'Capacity': 106529.07, 'Emissions': 18.07326744, 'Cost': 69704387961.0},
+    'geothermal': {'Generation': 0.0, 'Capacity': 8281.2, 'Emissions': 18.07326744, 'Cost': 69704387961.0},
+    'oil': {'Generation': 0.0, 'Capacity': 0.0, 'Emissions': 18.07326744, 'Cost': 69704387961.0},
+    'coal': {'Generation': 0.0, 'Capacity': 0.0, 'Emissions': 18.07326744, 'Cost': 69704387961.0}
+}
   df_2035 = pd.DataFrame(data_2035)
   # Combine all data into one DataFrame
   return pd.concat([df_2025, df_2030, df_2035], ignore_index=True)
