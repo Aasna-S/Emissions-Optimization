@@ -69,7 +69,7 @@ with tab1:
         chart_container = st.container()  # Create a container for the chart
         with chart_container:
             fig1 = px.bar(filtered_df, x='Year', y='Generation', color='Technology', barmode='group')
-            st.plotly_chart(fig1, height=250, width = 250)
+            st.plotly_chart(fig1, height=250, width = 150)
     with chart2:
         st.subheader("Data Table for Generation Overview")
         table_container = st.container()  # Create a container for the data table
