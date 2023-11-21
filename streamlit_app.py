@@ -42,11 +42,11 @@ df = create_dataframe_from_model_results()
 # Dashboard layout
 st.title("Canada Net Zero Power Generation")
 
+
 # Layout using tabs
-tab1, tab2, tab3 = st.tabs(["Generation Overview", "Emissions Analysis", "Cost Analysis"])
+tabs = st.sidebar.radio("Navigation", ["Generation Overview", "Emissions Analysis", "Cost Analysis"])
 
-
-with tab1:
+if tabs == "Generation Overview":
     st.header("Generation Overview by Technology and Year")
     fig1 = px.bar(df, x='Year', y='Generation', color='Technology', barmode='group')
     st.plotly_chart(fig1)
@@ -62,7 +62,7 @@ with tab1:
     total_generation = df.groupby('Year')['Generation'].sum()
     st.write(f"Total Generation: {total_generation}")
 
-with tab2:
+elif tabs == "Emissions Analysis":
     st.header("Emissions by Technology and Year")
     emissions_columns = st.columns(2)  # Split into two columns
     fig2 = px.bar(df, x='Year', y='Emissions', color='Technology', barmode='group')
@@ -78,7 +78,7 @@ with tab2:
     average_emissions = df.groupby('Year')['Emissions'].mean()
     st.write(f"Average Emissions: {average_emissions}")
 
-with tab3:
+else:
     st.header("Cost Analysis by Technology and Year")
     cost_columns = st.columns(2)  # Split into two columns
     fig3 = px.bar(df, x='Year', y='Cost', color='Technology', barmode='group')
