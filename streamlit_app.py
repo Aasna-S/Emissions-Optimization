@@ -66,8 +66,10 @@ with tab1:
     chart1,chart2 = st.columns(2)
     with chart1:
         st.markdown("### Generation by Source")
-        fig1 = px.bar(filtered_df, x='Year', y='Generation', color='Technology', barmode='group')
-        st.plotly_chart(fig1)
+        container = st.container()  # Create a container for the data table
+        with container:
+            fig1 = px.bar(filtered_df, x='Year', y='Generation', color='Technology', barmode='group')
+            st.plotly_chart(fig1, height=300)
     with chart2:
         st.subheader("Data Table for Generation Overview")
         container = st.container()  # Create a container for the data table
