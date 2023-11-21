@@ -45,6 +45,7 @@ st.title("Canada Net Zero Power Generation")
 # Layout using tabs
 tab1, tab2, tab3 = st.tabs(["Generation Overview", "Emissions Analysis", "Cost Analysis"])
 
+
 with tab1:
     st.header("Generation Overview by Technology and Year")
     fig1 = px.bar(df, x='Year', y='Generation', color='Technology', barmode='group')
@@ -64,14 +65,14 @@ with tab1:
 with tab2:
     st.header("Emissions by Technology and Year")
     # Emissions chart in column 1
-    emissions_chart_col1, emissions_chart_col2 = st.beta_columns(2)
+    emissions_chart_col1, emissions_chart_col2 = st.columns(2)
     fig2 = px.bar(df, x='Year', y='Emissions', color='Technology', barmode='group')
     emissions_chart_col1.plotly_chart(fig2)
 
     # Line chart for emissions over time in column 2 (Moved to tab2)
     st.subheader("Line Chart for Emissions Over Time")
     fig_line_emissions = px.line(df, x='Year', y='Emissions', color='Technology', title="Emissions Over Time")
-    st.plotly_chart(fig_line_emissions)
+    emissions_chart_col2.plotly_chart(fig_line_emissions)
 
     # KPIs for tab2
     st.subheader("KPIs for Emissions Analysis")
@@ -81,7 +82,7 @@ with tab2:
 with tab3:
     st.header("Cost Analysis by Technology and Year")
     # Cost breakdown chart in column 1
-    cost_chart_col1, cost_chart_col2 = st.beta_columns(2)
+    cost_chart_col1, cost_chart_col2 = st.columns(2)
     fig3 = px.bar(df, x='Year', y='Cost', color='Technology', barmode='group')
     cost_chart_col1.plotly_chart(fig3)
 
