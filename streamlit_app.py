@@ -62,11 +62,16 @@ with tab1:
     kpi1, kpi2 = st.columns(2)
     kpi1.metric("Total Emissions", f"{total_emission:.2f}", delta=None, delta_color="inverse")
     kpi2.metric("Total Cost", f"${total_cost:,.2f}", delta=None, delta_color="inverse")
-    
-    st.markdown("### Generation by Source")
-    fig1 = px.bar(filtered_df, x='Year', y='Generation', color='Technology', barmode='group')
-    st.plotly_chart(fig1)
-    
+
+    chart1,chart2 = st.columns(2)
+    with chart1:
+        st.markdown("### Generation by Source")
+        fig1 = px.bar(filtered_df, x='Year', y='Generation', color='Technology', barmode='group')
+        st.plotly_chart(fig1)
+    with chart2:
+        st.subheader("Data Table for Generation Overview")
+        st.dataframe(filtered_df) 
+
     st.subheader("Interactive Line Chart for Energy Generation")
     selected_tech = st.selectbox("Select Technology", df['Technology'].unique(), key="gen_tech_select")
     filtered_data = df[df['Technology'] == selected_tech]
