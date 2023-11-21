@@ -67,11 +67,11 @@ with tab1:
     kpi1.metric("Total Emissions", f"{total_emission:.2f}", delta=None, delta_color="inverse")
     kpi2.metric("Total Cost", f"${total_cost:,.2f}", delta=None, delta_color="inverse")
 
-    chart_container, table_container = st.columns(2)
+    chart_container, table_container = st.columns([2,1])
     with chart_container:
         st.markdown("### Generation by Source")
         fig1 = px.bar(filtered_df, x='Year', y='Generation', color='Technology', barmode='group')
-        st.plotly_chart(fig1, height=300, width = 200)  # Adjust height as needed
+        st.plotly_chart(fig1, height=300, width = 400)  # Adjust height as needed
     with table_container:
         st.subheader("Data Table for Generation Overview")
         st.dataframe(filtered_df, height=300)  # Adjust height as needed
