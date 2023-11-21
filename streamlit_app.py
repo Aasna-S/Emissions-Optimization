@@ -114,11 +114,10 @@ with tab1:
         st.subheader("Detailed Data Overview")
         st.dataframe(filtered_df, height=300)  # Adjust height as needed
 
-    st.subheader("Interactive Line Chart for Energy Generation")
-    selected_tech = st.selectbox("Select Technology", df['Technology'].unique(), key="gen_tech_select")
-    filtered_data = df[df['Technology'] == selected_tech]
-    fig_line = px.line(filtered_data, x="Year", y="Generation", title=f"Generation Over Time for {selected_tech}")
+    st.subheader("Energy Generation Over time")
+    fig_line = px.line(df, x="Year", y="Generation", title=f" Energy Generation Over Time", colors = 'Technology')
     st.plotly_chart(fig_line)
+
 
 with tab2:
     st.header("Emissions Overview")
