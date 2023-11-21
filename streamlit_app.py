@@ -73,7 +73,7 @@ with tab1:
         fig1 = px.bar(filtered_df, x='Year', y='Generation', color='Technology', barmode='group')
         st.plotly_chart(fig1, height=300, width = 400)  # Adjust height as needed
     with table_container:
-        st.subheader("Data Table for Generation Overview")
+        st.subheader("Detailed Data Overview")
         st.dataframe(filtered_df, height=300)  # Adjust height as needed
 
     st.subheader("Interactive Line Chart for Energy Generation")
@@ -118,3 +118,20 @@ with tab3:
     cost_breakdown_data = df[df['Year'] == selected_year]
     fig_cost_breakdown = px.bar(cost_breakdown_data, x='Technology', y='Cost', title=f"Cost Breakdown for {selected_year}")
     st.plotly_chart(fig_cost_breakdown)
+with tab4:
+    st.header("Capacity Analysis")
+    st.markdown("Analyze power generation capacity by source for different time periods.")
+    year_options = ['All'] + sorted(df['Year'].unique().tolist())
+    year_filter = st.selectbox("Select the Year", options=year_options, key="capacity_year_select")
+    if year_filter == 'All':
+        filtered_df = df
+    else:
+        filtered_df = df[df['Year'] == year_filter]
+    
+    st.markdown("### Capacity by Source")
+    fig_capacity = px.bar(filtered_df, x='Year', y='Capacity', color='Technology', barmode='group')
+    st.plotly_chart(fig_capacity)
+    
+    st.subheader("Capacity Over Time")
+    fig_line_capacity = px.line(df, x='Year', y='Capacity', color='Technology', title="Capacity Over Time")
+    st.plotly_chart(fig_line_capacity)
