@@ -69,12 +69,12 @@ with tab1:
         chart_container = st.container()  # Create a container for the chart
         with chart_container:
             fig1 = px.bar(filtered_df, x='Year', y='Generation', color='Technology', barmode='group')
-            st.plotly_chart(fig1, height=250)
+            st.plotly_chart(fig1, height=250, width = 250)
     with chart2:
         st.subheader("Data Table for Generation Overview")
         table_container = st.container()  # Create a container for the data table
         with table_container:
-            st.dataframe(filtered_df, height=300)  # Adjust the height as needed
+            st.dataframe(filtered_df, height=300, width = 300)  # Adjust the height as needed
 
     st.subheader("Interactive Line Chart for Energy Generation")
     selected_tech = st.selectbox("Select Technology", df['Technology'].unique(), key="gen_tech_select")
