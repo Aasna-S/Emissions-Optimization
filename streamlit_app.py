@@ -46,7 +46,7 @@ st.title("Canada Power Generation Insights (Goal Programming Model)")
 st.write("This dashboard provides an in-depth analysis of power generation in Canada, focusing on emissions, costs, and technology trends. Explore the data and gain insights into Canada's journey towards a sustainable and net-zero emissions future. The results presented here are based on a goal programming model.")
 
 # Create tabs for different sections
-tab1, tab2, tab3 = st.tabs(["Generation Overview", "Emissions Analysis", "Cost Analysis"])
+tab1, tab2, tab3, tab4= st.tabs(["Generation Overview", "Emissions Analysis", "Cost Analysis", "Capacity Analysis"])
 
 with tab1:
     st.header("Power Generation Overview")
