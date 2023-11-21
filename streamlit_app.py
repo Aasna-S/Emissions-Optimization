@@ -46,7 +46,7 @@ st.title("Canada Net Zero Power Generation")
 tab1, tab2, tab3 = st.tabs(["Generation Overview", "Emissions Analysis", "Cost Analysis"])
 
 # Layout using tabs
-tab1, tab2, tab3 = st.beta_columns(3)
+tab1, tab2, tab3 = st.columns(3)
 
 with tab1:
     st.header("Generation Overview by Technology and Year")
