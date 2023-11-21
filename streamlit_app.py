@@ -67,7 +67,7 @@ with tab1:
     with chart_container:
         st.markdown("### Generation by Source")
         fig1 = px.bar(filtered_df, x='Year', y='Generation', color='Technology', barmode='group')
-        st.plotly_chart(fig1, height=300)  # Adjust height as needed
+        st.plotly_chart(fig1, height=300, width = 200)  # Adjust height as needed
     with table_container:
         st.subheader("Data Table for Generation Overview")
         st.dataframe(filtered_df, height=300)  # Adjust height as needed
