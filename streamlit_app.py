@@ -67,7 +67,6 @@ with tab1:
         fig1 = px.bar(df, x='Year', y='Generation', color='Technology', barmode='group')
         st.plotly_chart(fig1)
     with chart2: 
-        st.markdown("### Line chart for Energy Generation")
         st.subheader("Interactive Line Chart for Energy Generation")
         selected_tech = col2.selectbox("Select Technology", df['Technology'].unique())
         filtered_data = df[df['Technology'] == selected_tech]
@@ -76,9 +75,12 @@ with tab1:
 
 with tab2:
     st.header("Emissions Analysis")
-    # Year filter with 'All' option
-    year_options = ['All', '2025', '2030', '2035']
-    selected_year = st.selectbox("Select Year", options=year_options)
+    year_options = ['All'] + sorted(df['Year'].unique().tolist())
+    year_filter = st.selectbox("Select the Year", options=year_options)
+    if year_filter == 'All':
+        filtered_df = df
+    else:
+        filtered_df = df[df['Year'] == year_filter]
     chart1, chart2 = st.columns(2)
     with chart1:
         st.markdown("### Emissions by Source")
@@ -91,21 +93,18 @@ with tab2:
 
 with tab3:
     st.header("Cost Analysis")
-    year_options = sorted(df['Year'].unique().tolist())
-    year_filter = st.selectbox("Select Year", options=year_options, key='t3')
-    
-    # Filter the DataFrame based on the selected year
-    if year_filter != 'All':
-        filtered_df = df[df['Year'] == year_filter]
-    else:
+    year_options = ['All'] + sorted(df['Year'].unique().tolist())
+    year_filter = st.selectbox("Select the Year", options=year_options)
+    if year_filter == 'All':
         filtered_df = df
+    else:
+        filtered_df = df[df['Year'] == year_filter]
     chart1, chart2 = st.columns(2)
     with chart1:
         fig3 = px.bar(df, x='Year', y='Cost', color='Technology', barmode='group')
         st.plotly_chart(fig3)
 
         st.subheader("Bar Chart for Cost Breakdown")
-        selected_year = col2.select_slider("Select Year", options=df['Year'].unique(), value=df['Year'].max())
         cost_breakdown_data = df[df['Year'] == selected_year]
         fig_cost_breakdown = px.bar(cost_breakdown_data, x='Technology', y='Cost', title=f"Cost Breakdown for {selected_year}")
         st.plotly_chart(fig_cost_breakdown)
