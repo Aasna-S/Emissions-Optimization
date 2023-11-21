@@ -43,45 +43,69 @@ df = create_dataframe_from_model_results()
 st.title("Canada Net Zero Power Generation")
 
 # Create tabs for different sections
-tabs = ["Generation Overview", "Emissions Analysis", "Cost Analysis"]
-selected_tab = st.radio("", tabs)
+tab1, tab2,tab3 = st.tabs(["Generation Overview", "Emissions Analysis", "Cost Analysis"])
 
-if selected_tab == "Generation Overview":
+with tab1:
     st.header("Generation Overview by Technology and Year")
-    with st.container():
-        col1, col2 = st.columns(2)
-        
+    year_options = ['All'] + sorted(df['Year'].unique().tolist())
+    year_filter = st.selectbox("Select the Year", options=year_options)
+    if year_filter == 'All':
+        filtered_df = df
+    else:
+        filtered_df = df[df['Year'] == year_filter]
+     # KPIs
+    total_emission = filtered_df['Emissions'].sum()
+    total_cost = filtered_df['Cost'].sum()
+    
+    # Layout using containers and columns
+    kpi1, kpi2 = st.columns(2)
+    kpi1.metric("Total Emissions", f"{total_emission:.2f}",delta=None, delta_color="inverse")
+    kpi2.metric("Total Cost", f"${total_cost:,.2f}",delta=None, delta_color="inverse")
+    chart1, chart2 = st.columns(2)
+    with chart1:
+        st.markdown("### Generation by Source")
         fig1 = px.bar(df, x='Year', y='Generation', color='Technology', barmode='group')
-        col1.plotly_chart(fig1)
-
+        st.plotly_chart(fig1)
+    with chart2: 
+        st.markdown("### Line chart for Energy Generation")
         st.subheader("Interactive Line Chart for Energy Generation")
         selected_tech = col2.selectbox("Select Technology", df['Technology'].unique())
         filtered_data = df[df['Technology'] == selected_tech]
         fig_line = px.line(filtered_data, x="Year", y="Generation", title=f"Generation Over Time for {selected_tech}")
-        col2.plotly_chart(fig_line)
+        st.plotly_chart(fig1)
 
-if selected_tab == "Emissions Analysis":
+with tab2:
     st.header("Emissions Analysis")
-    with st.container():
-        col1, col2 = st.columns(2)
-        
+    # Year filter with 'All' option
+    year_options = ['All', '2025', '2030', '2035']
+    selected_year = st.selectbox("Select Year", options=year_options)
+    chart1, chart2 = st.columns(2)
+    with chart1:
+        st.markdown("### Emissions by Source")
         fig2 = px.bar(df, x='Year', y='Emissions', color='Technology', barmode='group')
-        col1.plotly_chart(fig2)
-
-        st.subheader("Line Chart for Emissions Over Time")
+        st.plotly_chart(fig1)
+    with chart2: 
+        st.markdown("### Line Chart for Emissions Over Time")
         fig_line_emissions = px.line(df, x='Year', y='Emissions', color='Technology', title="Emissions Over Time")
-        col2.plotly_chart(fig_line_emissions)
+        st.plotly_chart(fig_line_emissions)
 
-if selected_tab == "Cost Analysis":
+with tab3:
     st.header("Cost Analysis")
-    with st.container():
-        col1, col2 = st.columns(2)
-        
+    year_options = sorted(df['Year'].unique().tolist())
+    year_filter = st.selectbox("Select Year", options=year_options, key='t3')
+    
+    # Filter the DataFrame based on the selected year
+    if year_filter != 'All':
+        filtered_df = df[df['Year'] == year_filter]
+    else:
+        filtered_df = df
+    chart1, chart2 = st.columns(2)
+    with chart1:
         fig3 = px.bar(df, x='Year', y='Cost', color='Technology', barmode='group')
-        col1.plotly_chart(fig3)
+        st.plotly_chart(fig3)
 
         st.subheader("Bar Chart for Cost Breakdown")
         selected_year = col2.select_slider("Select Year", options=df['Year'].unique(), value=df['Year'].max())
         cost_breakdown_data = df[df['Year'] == selected_year]
         fig_cost_breakdown = px.bar(cost_breakdown_data, x='Technology', y='Cost', title=f"Cost Breakdown for {selected_year}")
-        col2.plotly_chart(fig_cost_breakdown)
+        st.plotly_chart(fig_cost_breakdown)
