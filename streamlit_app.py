@@ -42,10 +42,9 @@ df = create_dataframe_from_model_results()
 # Dashboard layout
 st.title("Canada Net Zero Power Generation")
 
-
 # Create tabs for different sections
 tabs = ["Generation Overview", "Emissions Analysis", "Cost Analysis"]
-selected_tab = st.radio("Select Tab", tabs)
+selected_tab = st.radio("", tabs)
 
 if selected_tab == "Generation Overview":
     st.header("Generation Overview by Technology and Year")
@@ -61,7 +60,7 @@ if selected_tab == "Generation Overview":
         fig_line = px.line(filtered_data, x="Year", y="Generation", title=f"Generation Over Time for {selected_tech}")
         col2.plotly_chart(fig_line)
 
-elif selected_tab == "Emissions Analysis":
+if selected_tab == "Emissions Analysis":
     st.header("Emissions Analysis")
     with st.container():
         col1, col2 = st.columns(2)
@@ -73,7 +72,7 @@ elif selected_tab == "Emissions Analysis":
         fig_line_emissions = px.line(df, x='Year', y='Emissions', color='Technology', title="Emissions Over Time")
         col2.plotly_chart(fig_line_emissions)
 
-elif selected_tab == "Cost Analysis":
+if selected_tab == "Cost Analysis":
     st.header("Cost Analysis")
     with st.container():
         col1, col2 = st.columns(2)
