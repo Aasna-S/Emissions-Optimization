@@ -41,6 +41,7 @@ df = create_dataframe_from_model_results()
 
 # Dashboard layout
 st.title("Canada Net Zero Power Generation")
+
 # Layout using tabs
 tab1 = st.sidebar.checkbox("Generation Overview")
 tab2 = st.sidebar.checkbox("Emissions Analysis")
@@ -55,7 +56,7 @@ if tab1:
         col1.plotly_chart(fig1)
 
         st.subheader("Interactive Line Chart for Energy Generation")
-        selected_tech = st.selectbox("Select Technology", df['Technology'].unique())
+        selected_tech = col2.selectbox("Select Technology", df['Technology'].unique())
         filtered_data = df[df['Technology'] == selected_tech]
         fig_line = px.line(filtered_data, x="Year", y="Generation", title=f"Generation Over Time for {selected_tech}")
         col2.plotly_chart(fig_line)
@@ -91,7 +92,7 @@ if tab3:
         col1.plotly_chart(fig3)
 
         st.subheader("Bar Chart for Cost Breakdown")
-        selected_year = st.select_slider("Select Year", options=df['Year'].unique(), value=df['Year'].max())
+        selected_year = col2.select_slider("Select Year", options=df['Year'].unique(), value=df['Year'].max())
         cost_breakdown_data = df[df['Year'] == selected_year]
         fig_cost_breakdown = px.bar(cost_breakdown_data, x='Technology', y='Cost', title=f"Cost Breakdown for {selected_year}")
         col2.plotly_chart(fig_cost_breakdown)
