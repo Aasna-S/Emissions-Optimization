@@ -121,6 +121,15 @@ with tab1:
     st.plotly_chart(fig_line)
 
 with tab2:
+    # KPIs
+    total_emission = filtered_df['Emissions'].sum()
+    total_cost = filtered_df['Cost'].sum()
+    
+    # Layout using containers and columns
+    kpi1, kpi2 = st.columns(2)
+    kpi1.metric("Total Emissions", f"{total_emission:.2f}", delta=None, delta_color="inverse")
+    kpi2.metric("Total Cost", f"${total_cost:,.2f}", delta=None, delta_color="inverse")
+    
     st.header("Emissions Overview")
     st.markdown("Explore greenhouse gas emissions data in relation to power generation.")
     year_options = ['All'] + sorted(df['Year'].unique().tolist())
@@ -147,6 +156,14 @@ with tab2:
     st.plotly_chart(fig_line_emissions)
 
 with tab3:
+    # KPIs
+    total_emission = filtered_df['Emissions'].sum()
+    total_cost = filtered_df['Cost'].sum()
+    
+    # Layout using containers and columns
+    kpi1, kpi2 = st.columns(2)
+    kpi1.metric("Total Emissions", f"{total_emission:.2f}", delta=None, delta_color="inverse")
+    kpi2.metric("Total Cost", f"${total_cost:,.2f}", delta=None, delta_color="inverse")
     st.header("Cost Analysis")
     st.markdown("Analyze the cost breakdown of power generation technologies.")
     year_options = ['All'] + sorted(df['Year'].unique().tolist())
@@ -174,6 +191,15 @@ with tab3:
     fig_cost_breakdown = px.bar(cost_breakdown_data, x='Technology', y='Cost', title=f"Cost Breakdown for {selected_year}")
     st.plotly_chart(fig_cost_breakdown)
 with tab4:
+    # KPIs
+    total_emission = filtered_df['Emissions'].sum()
+    total_cost = filtered_df['Cost'].sum()
+    
+    # Layout using containers and columns
+    kpi1, kpi2 = st.columns(2)
+    kpi1.metric("Total Emissions", f"{total_emission:.2f}", delta=None, delta_color="inverse")
+    kpi2.metric("Total Cost", f"${total_cost:,.2f}", delta=None, delta_color="inverse")
+    
     st.header("Capacity Analysis")
     st.markdown("Analyze power generation capacity by source for different time periods.")
     year_options = ['All'] + sorted(df['Year'].unique().tolist())
