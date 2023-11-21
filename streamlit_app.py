@@ -41,60 +41,65 @@ df = create_dataframe_from_model_results()
 
 # Dashboard layout
 st.title("Canada Net Zero Power Generation")
-
-
 # Layout using tabs
-tabs = st.sidebar.radio("Navigation", ["Generation Overview", "Emissions Analysis", "Cost Analysis"])
+tab1 = st.sidebar.checkbox("Generation Overview")
+tab2 = st.sidebar.checkbox("Emissions Analysis")
+tab3 = st.sidebar.checkbox("Cost Analysis")
 
-if tabs == "Generation Overview":
+if tab1:
     st.header("Generation Overview by Technology and Year")
-    fig1 = px.bar(df, x='Year', y='Generation', color='Technology', barmode='group')
-    st.plotly_chart(fig1)
+    with st.container():
+        col1, col2 = st.columns(2)
+        
+        fig1 = px.bar(df, x='Year', y='Generation', color='Technology', barmode='group')
+        col1.plotly_chart(fig1)
 
-    st.subheader("Interactive Line Chart for Energy Generation")
-    selected_tech = st.selectbox("Select Technology", df['Technology'].unique())
-    filtered_data = df[df['Technology'] == selected_tech]
-    fig_line = px.line(filtered_data, x="Year", y="Generation", title=f"Generation Over Time for {selected_tech}")
-    st.plotly_chart(fig_line)
+        st.subheader("Interactive Line Chart for Energy Generation")
+        selected_tech = st.selectbox("Select Technology", df['Technology'].unique())
+        filtered_data = df[df['Technology'] == selected_tech]
+        fig_line = px.line(filtered_data, x="Year", y="Generation", title=f"Generation Over Time for {selected_tech}")
+        col2.plotly_chart(fig_line)
 
-    # KPIs for tab1
-    st.subheader("KPIs for Generation Overview")
-    total_generation = df.groupby('Year')['Generation'].sum()
-    st.write(f"Total Generation: {total_generation}")
+        # KPIs for tab1
+        st.subheader("KPIs for Generation Overview")
+        total_generation = df.groupby('Year')['Generation'].sum()
+        st.write(f"Total Generation: {total_generation}")
 
-elif tabs == "Emissions Analysis":
-    st.header("Emissions by Technology and Year")
-    emissions_columns = st.columns(2)  # Split into two columns
-    fig2 = px.bar(df, x='Year', y='Emissions', color='Technology', barmode='group')
-    emissions_columns[0].plotly_chart(fig2)
+if tab2:
+    st.header("Emissions Analysis")
+    with st.container():
+        col1, col2 = st.columns(2)
+        
+        fig2 = px.bar(df, x='Year', y='Emissions', color='Technology', barmode='group')
+        col1.plotly_chart(fig2)
 
-    # Line chart for emissions over time (Moved to tab2)
-    st.subheader("Line Chart for Emissions Over Time")
-    fig_line_emissions = px.line(df, x='Year', y='Emissions', color='Technology', title="Emissions Over Time")
-    emissions_columns[1].plotly_chart(fig_line_emissions)
+        st.subheader("Line Chart for Emissions Over Time")
+        fig_line_emissions = px.line(df, x='Year', y='Emissions', color='Technology', title="Emissions Over Time")
+        col2.plotly_chart(fig_line_emissions)
 
-    # KPIs for tab2
-    st.subheader("KPIs for Emissions Analysis")
-    average_emissions = df.groupby('Year')['Emissions'].mean()
-    st.write(f"Average Emissions: {average_emissions}")
+        # KPIs for tab2
+        st.subheader("KPIs for Emissions Analysis")
+        average_emissions = df.groupby('Year')['Emissions'].mean()
+        st.write(f"Average Emissions: {average_emissions}")
 
-else:
-    st.header("Cost Analysis by Technology and Year")
-    cost_columns = st.columns(2)  # Split into two columns
-    fig3 = px.bar(df, x='Year', y='Cost', color='Technology', barmode='group')
-    cost_columns[0].plotly_chart(fig3)
+if tab3:
+    st.header("Cost Analysis")
+    with st.container():
+        col1, col2 = st.columns(2)
+        
+        fig3 = px.bar(df, x='Year', y='Cost', color='Technology', barmode='group')
+        col1.plotly_chart(fig3)
 
-    # Bar chart for cost breakdown (Moved to tab3)
-    st.subheader("Bar Chart for Cost Breakdown")
-    selected_year = st.select_slider("Select Year", options=df['Year'].unique(), value=df['Year'].max())
-    cost_breakdown_data = df[df['Year'] == selected_year]
-    fig_cost_breakdown = px.bar(cost_breakdown_data, x='Technology', y='Cost', title=f"Cost Breakdown for {selected_year}")
-    cost_columns[1].plotly_chart(fig_cost_breakdown)
+        st.subheader("Bar Chart for Cost Breakdown")
+        selected_year = st.select_slider("Select Year", options=df['Year'].unique(), value=df['Year'].max())
+        cost_breakdown_data = df[df['Year'] == selected_year]
+        fig_cost_breakdown = px.bar(cost_breakdown_data, x='Technology', y='Cost', title=f"Cost Breakdown for {selected_year}")
+        col2.plotly_chart(fig_cost_breakdown)
 
-    # KPIs for tab3
-    st.subheader("KPIs for Cost Analysis")
-    total_cost = df.groupby('Year')['Cost'].sum()
-    st.write(f"Total Cost: {total_cost}")
+        # KPIs for tab3
+        st.subheader("KPIs for Cost Analysis")
+        total_cost = df.groupby('Year')['Cost'].sum()
+        st.write(f"Total Cost: {total_cost}")
 
 # Widgets (global widgets)
 st.sidebar.subheader("Customize Your View")
