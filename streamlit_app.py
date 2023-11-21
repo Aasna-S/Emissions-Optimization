@@ -70,7 +70,7 @@ with tab1:
         st.plotly_chart(fig1)
     with chart2:
         st.subheader("Data Table for Generation Overview")
-        st.dataframe(filtered_df) 
+        st.dataframe(filtered_df, height=400)
 
     st.subheader("Interactive Line Chart for Energy Generation")
     selected_tech = st.selectbox("Select Technology", df['Technology'].unique(), key="gen_tech_select")
