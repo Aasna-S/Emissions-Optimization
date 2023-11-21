@@ -40,13 +40,17 @@ def create_dataframe_from_model_results():
 df = create_dataframe_from_model_results()
 
 # Dashboard layout
-st.title("Canada Net Zero Power Generation")
+st.title("Canada Power Generation Insights (Goal Programming Model)")
+
+# Canada-specific narrative
+st.write("This dashboard provides an in-depth analysis of power generation in Canada, focusing on emissions, costs, and technology trends. Explore the data and gain insights into Canada's journey towards a sustainable and net-zero emissions future. The results presented here are based on a goal programming model.")
 
 # Create tabs for different sections
 tab1, tab2, tab3 = st.tabs(["Generation Overview", "Emissions Analysis", "Cost Analysis"])
 
 with tab1:
-    st.header("Generation Overview by Technology and Year")
+    st.header("Power Generation Overview")
+    st.markdown("Explore power generation data and its impact on emissions reduction.")
     year_options = ['All'] + sorted(df['Year'].unique().tolist())
     year_filter = st.selectbox("Select the Year", options=year_options, key="gen_year_select")
     if year_filter == 'All':
@@ -79,7 +83,8 @@ with tab1:
     st.plotly_chart(fig_line)
 
 with tab2:
-    st.header("Emissions Analysis")
+    st.header("Emissions Overview")
+    st.markdown("Explore greenhouse gas emissions data in relation to power generation.")
     year_options = ['All'] + sorted(df['Year'].unique().tolist())
     year_filter = st.selectbox("Select the Year", options=year_options, key="emissions_year_select")
     if year_filter == 'All':
@@ -91,12 +96,13 @@ with tab2:
     fig2 = px.bar(filtered_df, x='Year', y='Emissions', color='Technology', barmode='group')
     st.plotly_chart(fig2)
     
-    st.subheader("Line Chart for Emissions Over Time")
+    st.subheader("Emissions Over Time")
     fig_line_emissions = px.line(df, x='Year', y='Emissions', color='Technology', title="Emissions Over Time")
     st.plotly_chart(fig_line_emissions)
 
 with tab3:
     st.header("Cost Analysis")
+    st.markdown("Analyze the cost breakdown of power generation technologies.")
     year_options = ['All'] + sorted(df['Year'].unique().tolist())
     year_filter = st.selectbox("Select the Year", options=year_options, key="cost_year_select")
     if year_filter == 'All':
