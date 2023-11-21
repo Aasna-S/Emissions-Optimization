@@ -115,7 +115,7 @@ with tab1:
         st.dataframe(filtered_df, height=300)  # Adjust height as needed
 
     st.subheader("Energy Generation Over time")
-    fig_line = px.line(df, x="Year", y="Generation", title=f" Energy Generation Over Time", colors = 'Technology')
+    fig_line = px.line(df, x="Year", y="Generation", title=f" Energy Generation Over Time", color = 'Technology')
     st.plotly_chart(fig_line)
 
 
