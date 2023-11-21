@@ -121,6 +121,14 @@ with tab1:
     st.plotly_chart(fig_line)
 
 with tab2:
+    st.header("Emissions Overview")
+    st.markdown("Explore greenhouse gas emissions data in relation to power generation.")
+    year_options = ['All'] + sorted(df['Year'].unique().tolist())
+    year_filter = st.selectbox("Select the Year", options=year_options, key="emissions_year_select")
+    if year_filter == 'All':
+        filtered_df = df
+    else:
+        filtered_df = df[df['Year'] == year_filter]
     # KPIs
     total_emission = filtered_df['Emissions'].sum()
     total_cost = filtered_df['Cost'].sum()
@@ -130,14 +138,7 @@ with tab2:
     kpi1.metric("Total Emissions", f"{total_emission:.2f}", delta=None, delta_color="inverse")
     kpi2.metric("Total Cost", f"${total_cost:,.2f}", delta=None, delta_color="inverse")
     
-    st.header("Emissions Overview")
-    st.markdown("Explore greenhouse gas emissions data in relation to power generation.")
-    year_options = ['All'] + sorted(df['Year'].unique().tolist())
-    year_filter = st.selectbox("Select the Year", options=year_options, key="emissions_year_select")
-    if year_filter == 'All':
-        filtered_df = df
-    else:
-        filtered_df = df[df['Year'] == year_filter]
+    
     
     st.markdown("### Emissions by Source")
     fig2 = px.bar(filtered_df, x='Year', y='Emissions', color='Technology', barmode='group')
@@ -156,14 +157,6 @@ with tab2:
     st.plotly_chart(fig_line_emissions)
 
 with tab3:
-    # KPIs
-    total_emission = filtered_df['Emissions'].sum()
-    total_cost = filtered_df['Cost'].sum()
-    
-    # Layout using containers and columns
-    kpi1, kpi2 = st.columns(2)
-    kpi1.metric("Total Emissions", f"{total_emission:.2f}", delta=None, delta_color="inverse")
-    kpi2.metric("Total Cost", f"${total_cost:,.2f}", delta=None, delta_color="inverse")
     st.header("Cost Analysis")
     st.markdown("Analyze the cost breakdown of power generation technologies.")
     year_options = ['All'] + sorted(df['Year'].unique().tolist())
@@ -172,6 +165,15 @@ with tab3:
         filtered_df = df
     else:
         filtered_df = df[df['Year'] == year_filter]
+    # KPIs
+    total_emission = filtered_df['Emissions'].sum()
+    total_cost = filtered_df['Cost'].sum()
+    
+    # Layout using containers and columns
+    kpi1, kpi2 = st.columns(2)
+    kpi1.metric("Total Emissions", f"{total_emission:.2f}", delta=None, delta_color="inverse")
+    kpi2.metric("Total Cost", f"${total_cost:,.2f}", delta=None, delta_color="inverse")
+   
     
     fig3 = px.bar(filtered_df, x='Year', y='Cost', color='Technology', barmode='group')
     st.plotly_chart(fig3)
@@ -191,6 +193,14 @@ with tab3:
     fig_cost_breakdown = px.bar(cost_breakdown_data, x='Technology', y='Cost', title=f"Cost Breakdown for {selected_year}")
     st.plotly_chart(fig_cost_breakdown)
 with tab4:
+    st.header("Capacity Analysis")
+    st.markdown("Analyze power generation capacity by source for different time periods.")
+    year_options = ['All'] + sorted(df['Year'].unique().tolist())
+    year_filter = st.selectbox("Select the Year", options=year_options, key="capacity_year_select")
+    if year_filter == 'All':
+        filtered_df = df
+    else:
+        filtered_df = df[df['Year'] == year_filter]
     # KPIs
     total_emission = filtered_df['Emissions'].sum()
     total_cost = filtered_df['Cost'].sum()
@@ -200,14 +210,7 @@ with tab4:
     kpi1.metric("Total Emissions", f"{total_emission:.2f}", delta=None, delta_color="inverse")
     kpi2.metric("Total Cost", f"${total_cost:,.2f}", delta=None, delta_color="inverse")
     
-    st.header("Capacity Analysis")
-    st.markdown("Analyze power generation capacity by source for different time periods.")
-    year_options = ['All'] + sorted(df['Year'].unique().tolist())
-    year_filter = st.selectbox("Select the Year", options=year_options, key="capacity_year_select")
-    if year_filter == 'All':
-        filtered_df = df
-    else:
-        filtered_df = df[df['Year'] == year_filter]
+    
     
     st.markdown("### Capacity by Source")
     fig_capacity = px.bar(filtered_df, x='Year', y='Capacity', color='Technology', barmode='group')
