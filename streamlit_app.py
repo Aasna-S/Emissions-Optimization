@@ -100,12 +100,12 @@ with tab1:
         st.markdown("### Generation by Source")
         #fig1 = px.bar(filtered_df, x='Year', y='Generation', color='Technology', barmode='group')
         #st.plotly_chart(fig1, height=300, width = 400)  # Adjust height as needed
-        fig_generation_deviation = px.bar(filtered_data, x='Year', y='Generation', color='Technology', barmode='group',
+        fig_generation_deviation = px.bar(filtered_df, x='Year', y='Generation', color='Technology', barmode='group',
                                   title=f"Generation Overview with Deviations for {selected_tech}")
         # Add lines for positive and negative deviations
-        fig_generation_deviation.add_trace(go.Scatter(x=filtered_data['Year'], y=filtered_data['Positive Generation Deviation'],
+        fig_generation_deviation.add_trace(go.Scatter(x=filtered_df['Year'], y=filtered_df['Positive Generation Deviation'],
                                              mode='lines', name='Positive Deviation'))
-        fig_generation_deviation.add_trace(go.Scatter(x=filtered_data['Year'], y=filtered_data['Negative Generation Deviation'],
+        fig_generation_deviation.add_trace(go.Scatter(x=filtered_df['Year'], y=filtered_df['Negative Generation Deviation'],
                                              mode='lines', name='Negative Deviation'))
 
         st.plotly_chart(fig_generation_deviation)
@@ -132,13 +132,13 @@ with tab2:
     st.markdown("### Emissions by Source")
     #fig2 = px.bar(filtered_df, x='Year', y='Emissions', color='Technology', barmode='group')
     #st.plotly_chart(fig2)
-    fig_emissions_deviation = px.bar(filtered_data, x='Year', y='Emissions', color='Technology', barmode='group',
+    fig_emissions_deviation = px.bar(filtered_df, x='Year', y='Emissions', color='Technology', barmode='group',
                                   title=f"Emissions Analysis with Deviations for {selected_tech}")
 
     # Add lines for positive and negative deviations
-    fig_emissions_deviation.add_trace(go.Scatter(x=filtered_data['Year'], y=filtered_data['Positive Emissions Deviation'],
+    fig_emissions_deviation.add_trace(go.Scatter(x=filtered_df['Year'], y=filtered_df['Positive Emissions Deviation'],
                                                  mode='lines', name='Positive Deviation'))
-    fig_emissions_deviation.add_trace(go.Scatter(x=filtered_data['Year'], y=filtered_data['Negative Emissions Deviation'],
+    fig_emissions_deviation.add_trace(go.Scatter(x=filtered_df['Year'], y=filtered_df['Negative Emissions Deviation'],
                                                  mode='lines', name='Negative Deviation'))
 
     st.plotly_chart(fig_emissions_deviation)
@@ -158,13 +158,13 @@ with tab3:
     
     #fig3 = px.bar(filtered_df, x='Year', y='Cost', color='Technology', barmode='group')
     #st.plotly_chart(fig3)
-    fig_cost_deviation = px.bar(filtered_data, x='Year', y='Cost', color='Technology', barmode='group',
+    fig_cost_deviation = px.bar(filtered_df, x='Year', y='Cost', color='Technology', barmode='group',
                             title=f"Cost Analysis with Deviations for {selected_tech}")
 
     # Add lines for positive and negative deviations
-    fig_cost_deviation.add_trace(go.Scatter(x=filtered_data['Year'], y=filtered_data['Positive Cost Deviation'],
+    fig_cost_deviation.add_trace(go.Scatter(x=filtered_df['Year'], y=filtered_df['Positive Cost Deviation'],
                                              mode='lines', name='Positive Deviation'))
-    fig_cost_deviation.add_trace(go.Scatter(x=filtered_data['Year'], y=filtered_data['Negative Cost Deviation'],
+    fig_cost_deviation.add_trace(go.Scatter(x=filtered_df['Year'], y=filtered_df['Negative Cost Deviation'],
                                              mode='lines', name='Negative Deviation'))
 
     st.plotly_chart(fig_cost_deviation)
@@ -186,13 +186,13 @@ with tab4:
     st.markdown("### Capacity by Source")
     #fig_capacity = px.bar(filtered_df, x='Year', y='Capacity', color='Technology', barmode='group')
     #st.plotly_chart(fig_capacity)
-    fig_capacity_deviation = px.bar(filtered_data, x='Year', y='Capacity', color='Technology', barmode='group',
+    fig_capacity_deviation = px.bar(filtered_df, x='Year', y='Capacity', color='Technology', barmode='group',
                                 title=f"Capacity Analysis with Deviations for {selected_tech}")
 
     # Add lines for positive and negative deviations
-    fig_capacity_deviation.add_trace(go.Scatter(x=filtered_data['Year'], y=filtered_data['Positive Capacity Deviation'],
+    fig_capacity_deviation.add_trace(go.Scatter(x=filtered_df['Year'], y=filtered_df['Positive Capacity Deviation'],
                                                 mode='lines', name='Positive Deviation'))
-    fig_capacity_deviation.add_trace(go.Scatter(x=filtered_data['Year'], y=filtered_data['Negative Capacity Deviation'],
+    fig_capacity_deviation.add_trace(go.Scatter(x=filtered_df['Year'], y=filtered_df['Negative Capacity Deviation'],
                                                 mode='lines', name='Negative Deviation'))
     
     st.plotly_chart(fig_capacity_deviation)
