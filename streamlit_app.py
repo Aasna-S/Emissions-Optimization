@@ -55,25 +55,55 @@ with tab1:
     filtered_data = df[df['Technology'] == selected_tech]
     fig_line = px.line(filtered_data, x="Year", y="Generation", title=f"Generation Over Time for {selected_tech}")
     st.plotly_chart(fig_line)
-    
+
+    # KPIs for tab1
+    st.subheader("KPIs for Generation Overview")
+    total_generation = df.groupby('Year')['Generation'].sum()
+    st.write(f"Total Generation: {total_generation}")
 
 with tab2:
     st.header("Emissions by Technology and Year")
+    # Emissions chart in column 1
+    emissions_chart_col1, emissions_chart_col2 = st.beta_columns(2)
     fig2 = px.bar(df, x='Year', y='Emissions', color='Technology', barmode='group')
-    st.plotly_chart(fig2)
+    emissions_chart_col1.plotly_chart(fig2)
 
-    # Comparison Chart
-    st.subheader("Comparison of Technologies")
-    year_to_compare = st.select_slider("Select Year", options=df['Year'].unique(), value=df['Year'].max())
-    compare_data = df[df['Year'] == year_to_compare]
-    fig_compare = px.bar(compare_data, x='Technology', y='Generation', title=f"Generation Comparison for {year_to_compare}")
-    st.plotly_chart(fig_compare)
+    # Line chart for emissions over time in column 2 (Moved to tab2)
+    st.subheader("Line Chart for Emissions Over Time")
+    fig_line_emissions = px.line(df, x='Year', y='Emissions', color='Technology', title="Emissions Over Time")
+    st.plotly_chart(fig_line_emissions)
+
+    # KPIs for tab2
+    st.subheader("KPIs for Emissions Analysis")
+    average_emissions = df.groupby('Year')['Emissions'].mean()
+    st.write(f"Average Emissions: {average_emissions}")
 
 with tab3:
     st.header("Cost Analysis by Technology and Year")
+    # Cost breakdown chart in column 1
+    cost_chart_col1, cost_chart_col2 = st.beta_columns(2)
     fig3 = px.bar(df, x='Year', y='Cost', color='Technology', barmode='group')
-    st.plotly_chart(fig3)
+    cost_chart_col1.plotly_chart(fig3)
 
-    # Data Table
-    st.subheader("Detailed Data Table")
-    st.dataframe(df)
+    # Bar chart for cost breakdown in column 2 (Moved to tab3)
+    st.subheader("Bar Chart for Cost Breakdown")
+    selected_year = st.select_slider("Select Year", options=df['Year'].unique(), value=df['Year'].max())
+    cost_breakdown_data = df[df['Year'] == selected_year]
+    fig_cost_breakdown = px.bar(cost_breakdown_data, x='Technology', y='Cost', title=f"Cost Breakdown for {selected_year}")
+    cost_chart_col2.plotly_chart(fig_cost_breakdown)
+
+    # KPIs for tab3
+    st.subheader("KPIs for Cost Analysis")
+    total_cost = df.groupby('Year')['Cost'].sum()
+    st.write(f"Total Cost: {total_cost}")
+
+# Widgets (global widgets)
+st.sidebar.subheader("Customize Your View")
+selected_year = st.sidebar.select_slider("Select Year", options=df['Year'].unique(), value=df['Year'].max())
+selected_technology = st.sidebar.selectbox("Select Technology", df['Technology'].unique())
+
+# Visualizations (global visualizations)
+st.header("Additional Visualizations")
+# Pie chart for generation distribution
+fig_pie = px.pie(df[df['Year'] == selected_year], names='Technology', values='Generation', title=f"Generation Distribution for {selected_year}")
+st.plotly_chart(fig_pie)
