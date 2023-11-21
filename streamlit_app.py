@@ -45,6 +45,8 @@ st.title("Canada Net Zero Power Generation")
 # Layout using tabs
 tab1, tab2, tab3 = st.tabs(["Generation Overview", "Emissions Analysis", "Cost Analysis"])
 
+# Layout using tabs
+tab1, tab2, tab3 = st.beta_columns(3)
 
 with tab1:
     st.header("Generation Overview by Technology and Year")
@@ -64,15 +66,14 @@ with tab1:
 
 with tab2:
     st.header("Emissions by Technology and Year")
-    # Emissions chart in column 1
-    emissions_chart_col1, emissions_chart_col2 = st.columns(2)
+    emissions_columns = st.columns(2)  # Split into two columns
     fig2 = px.bar(df, x='Year', y='Emissions', color='Technology', barmode='group')
-    emissions_chart_col1.plotly_chart(fig2)
+    emissions_columns[0].plotly_chart(fig2)
 
-    # Line chart for emissions over time in column 2 (Moved to tab2)
+    # Line chart for emissions over time (Moved to tab2)
     st.subheader("Line Chart for Emissions Over Time")
     fig_line_emissions = px.line(df, x='Year', y='Emissions', color='Technology', title="Emissions Over Time")
-    emissions_chart_col2.plotly_chart(fig_line_emissions)
+    emissions_columns[1].plotly_chart(fig_line_emissions)
 
     # KPIs for tab2
     st.subheader("KPIs for Emissions Analysis")
@@ -81,17 +82,16 @@ with tab2:
 
 with tab3:
     st.header("Cost Analysis by Technology and Year")
-    # Cost breakdown chart in column 1
-    cost_chart_col1, cost_chart_col2 = st.columns(2)
+    cost_columns = st.columns(2)  # Split into two columns
     fig3 = px.bar(df, x='Year', y='Cost', color='Technology', barmode='group')
-    cost_chart_col1.plotly_chart(fig3)
+    cost_columns[0].plotly_chart(fig3)
 
-    # Bar chart for cost breakdown in column 2 (Moved to tab3)
+    # Bar chart for cost breakdown (Moved to tab3)
     st.subheader("Bar Chart for Cost Breakdown")
     selected_year = st.select_slider("Select Year", options=df['Year'].unique(), value=df['Year'].max())
     cost_breakdown_data = df[df['Year'] == selected_year]
     fig_cost_breakdown = px.bar(cost_breakdown_data, x='Technology', y='Cost', title=f"Cost Breakdown for {selected_year}")
-    cost_chart_col2.plotly_chart(fig_cost_breakdown)
+    cost_columns[1].plotly_chart(fig_cost_breakdown)
 
     # KPIs for tab3
     st.subheader("KPIs for Cost Analysis")
