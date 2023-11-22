@@ -146,16 +146,7 @@ with tab1:
         )
 
     fig1.update_layout(showlegend=False)
-    st.plotly_chart(fig1) 
-        #fig_generation_deviation = px.bar(filtered_df, x='Year', y='Generation', color='Technology', barmode='group',
-                                  #title=f"Generation Overview with Deviations")
-        # Add lines for positive and negative deviations
-        #fig_generation_deviation.add_trace(go.Scatter(x=filtered_df['Year'], y=filtered_df['Positive Generation Deviation'],
-                                   #          mode='lines', name='Positive Deviation'))
-        #fig_generation_deviation.add_trace(go.Scatter(x=filtered_df['Year'], y=filtered_df['Negative Generation Deviation'],
-                                    #         mode='lines', name='Negative Deviation'))
-
-        #st.plotly_chart(fig_generation_deviation)
+    
     with table_container:
         st.subheader("Detailed Data Overview")
         st.dataframe(filtered_df, height=300)  # Adjust height as needed
