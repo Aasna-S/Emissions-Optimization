@@ -69,21 +69,15 @@ def create_dataframe_from_model_results():
         0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, # 2025
         0.0, 0.0, 15304.04, 0.0, 0.0, 0.0, 0.0, 0.0, # 2030
         120135.18, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 # 2035
-    ],
+    ]
     
-    'Lgst': [
-    60429.05, 11707.13,401733.6,78278.04,87486.85,8281.2,1355.5,3044.54,
-    92547.75,15214.42,443103.1,87724.81,77098.86,7526.04,969.57,0,
-    184305.21,42161.81,465887.5,131692.29,41866.65,19716.07,726.09,0
-
-]
 
 
     
 }
-    return Lgst, pd.DataFrame(data)
+    return pd.DataFrame(data)
 
-Lgst,df = create_dataframe_from_model_results()
+df = create_dataframe_from_model_results()
 
 # Dashboard layout
 st.title("Canada Power Generation Insights (Goal Programming Model)")
@@ -109,7 +103,11 @@ with tab1:
     total_cost = filtered_df['Cost'].sum()
     total_generation= filtered_df['Generation'].sum()
     total_capacity= filtered_df['Capacity'].sum()
-    
+
+    Lgst': [
+    60429.05, 11707.13,401733.6,78278.04,87486.85,8281.2,1355.5,3044.54,
+    92547.75,15214.42,443103.1,87724.81,77098.86,7526.04,969.57,0,
+    184305.21,42161.81,465887.5,131692.29,41866.65,19716.07,726.09,0]
     # Layout using containers and columns
     kpi1, kpi2,kpi3,kpi4 = st.columns(4)
     kpi1.metric("Total Generation (GW)", f"{total_generation:.2f}", delta=None, delta_color="inverse")
