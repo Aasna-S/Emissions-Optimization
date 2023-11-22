@@ -141,12 +141,15 @@ with tab2:
     # KPIs
     total_emission = filtered_df['Emissions'].sum()
     total_cost = filtered_df['Cost'].sum()
+    total_generation= filtered_df['Generation'].sum()
+    total_capacity= filtered_df['Capacity'].sum()
     
     # Layout using containers and columns
-    kpi1, kpi2 = st.columns(2)
-    kpi1.metric("Total Emissions", f"{total_emission:.2f}", delta=None, delta_color="inverse")
-    kpi2.metric("Total Cost", f"${total_cost:,.2f}", delta=None, delta_color="inverse")
-    
+    kpi1, kpi2,kpi3,kpi4 = st.columns(4)
+    kpi1.metric("Total Generation (GW)", f"{total_generation:.2f}", delta=None, delta_color="inverse")
+    kpi2.metric("Total Emissions (MTCO2e)", f"{total_emission:.2f}", delta=None, delta_color="inverse")
+    kpi3.metric("Total Cost (CAD)", f"${total_cost:,.2f}", delta=None, delta_color="inverse")
+    kpi4.metric("Total Capacity (GWh)", f"{total_capacity:.2f}", delta=None, delta_color="inverse")
     
     
     st.markdown("### Emissions by Source")
@@ -177,12 +180,15 @@ with tab3:
     # KPIs
     total_emission = filtered_df['Emissions'].sum()
     total_cost = filtered_df['Cost'].sum()
+    total_generation= filtered_df['Generation'].sum()
+    total_capacity= filtered_df['Capacity'].sum()
     
     # Layout using containers and columns
-    kpi1, kpi2 = st.columns(2)
-    kpi1.metric("Total Emissions", f"{total_emission:.2f}", delta=None, delta_color="inverse")
-    kpi2.metric("Total Cost", f"${total_cost:,.2f}", delta=None, delta_color="inverse")
-   
+    kpi1, kpi2,kpi3,kpi4 = st.columns(4)
+    kpi1.metric("Total Generation (GW)", f"{total_generation:.2f}", delta=None, delta_color="inverse")
+    kpi2.metric("Total Emissions (MTCO2e)", f"{total_emission:.2f}", delta=None, delta_color="inverse")
+    kpi3.metric("Total Cost (CAD)", f"${total_cost:,.2f}", delta=None, delta_color="inverse")
+    kpi4.metric("Total Capacity (GWh)", f"{total_capacity:.2f}", delta=None, delta_color="inverse")
     
     fig3 = px.bar(filtered_df, x='Year', y='Cost', color='Technology', barmode='group')
     st.plotly_chart(fig3)
@@ -213,11 +219,15 @@ with tab4:
     # KPIs
     total_emission = filtered_df['Emissions'].sum()
     total_cost = filtered_df['Cost'].sum()
+    total_generation= filtered_df['Generation'].sum()
+    total_capacity= filtered_df['Capacity'].sum()
     
     # Layout using containers and columns
-    kpi1, kpi2 = st.columns(2)
-    kpi1.metric("Total Emissions", f"{total_emission:.2f}", delta=None, delta_color="inverse")
-    kpi2.metric("Total Cost", f"${total_cost:,.2f}", delta=None, delta_color="inverse")
+    kpi1, kpi2,kpi3,kpi4 = st.columns(4)
+    kpi1.metric("Total Generation (GW)", f"{total_generation:.2f}", delta=None, delta_color="inverse")
+    kpi2.metric("Total Emissions (MTCO2e)", f"{total_emission:.2f}", delta=None, delta_color="inverse")
+    kpi3.metric("Total Cost (CAD)", f"${total_cost:,.2f}", delta=None, delta_color="inverse")
+    kpi4.metric("Total Capacity (GWh)", f"{total_capacity:.2f}", delta=None, delta_color="inverse")
     
     
     
