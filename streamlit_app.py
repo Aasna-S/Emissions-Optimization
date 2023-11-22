@@ -69,7 +69,17 @@ def create_dataframe_from_model_results():
         0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, # 2025
         0.0, 0.0, 15304.04, 0.0, 0.0, 0.0, 0.0, 0.0, # 2030
         120135.18, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 # 2035
-    ]
+    ],
+    'Lgst': [
+    [60429.05, 92547.75, 184305.21],  # Wind
+    [11707.13, 15214.42, 42161.81],   # Solar
+    [401733.6, 443103.1, 465887.5],   # Hydro
+    [78278.04, 87724.81, 131692.29],  # Nuclear
+    [87486.85, 77098.86, 41866.65],   # Natural Gas
+    [8281.2, 7526.04, 19716.07],      # Geothermal
+    [1355.5, 969.57, 726.09],         # Oil
+    [3044.54, 0, 0]                   # Coal
+]
 }
     return pd.DataFrame(data)
 
@@ -111,6 +121,27 @@ with tab1:
         st.markdown("### Generation by Source")
         fig1 = px.bar(filtered_df, x='Year', y='Generation', color='Technology', barmode='group')
         st.plotly_chart(fig1, height=300, width = 400)  # Adjust height as needed
+        # Add goal markers 
+    fig1.add_scatter(
+    x=['wind','solar','hydro','nuclear','natural_gas','geothermal','oil','coal'],
+    y=[Lgst[0][0], Lgst[1][0], Lgst[2][0], Lgst[3][0], Lgst[4][0], Lgst[5][0], Lgst[6][0], Lgst[7][0]], 
+    mode='markers',
+    marker=dict(color='black',size=12)
+        )
+
+# Add deviation shapes
+    for i in range(len(data)):
+        fig1.add_shape(
+            type='line',
+            x0=data.loc[i,'Technology'], 
+            x1=data.loc[i,'Technology'],
+            y0=data.loc[i,'Generation'] - data.loc[i,'Negative Generation Deviation'],
+            y1=data.loc[i,'Generation'] + data.loc[i,'Positive Generation Deviation'],
+            line=dict(color='red', width=2, dash='dash') 
+        )
+
+fig1.update_layout(showlegend=False)
+st.plotly_chart(fig1) 
         #fig_generation_deviation = px.bar(filtered_df, x='Year', y='Generation', color='Technology', barmode='group',
                                   #title=f"Generation Overview with Deviations")
         # Add lines for positive and negative deviations
