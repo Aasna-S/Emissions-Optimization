@@ -104,10 +104,17 @@ with tab1:
     total_generation= filtered_df['Generation'].sum()
     total_capacity= filtered_df['Capacity'].sum()
 
-    Lgst = [
-    60429.05, 11707.13,401733.6,78278.04,87486.85,8281.2,1355.5,3044.54,
-    92547.75,15214.42,443103.1,87724.81,77098.86,7526.04,969.57,0,
-    184305.21,42161.81,465887.5,131692.29,41866.65,19716.07,726.09,0]
+    Lgst= [
+    [60429.05, 92547.75, 184305.21],  # Wind
+    [11707.13, 15214.42, 42161.81],   # Solar
+    [401733.6, 443103.1, 465887.5],   # Hydro
+    [78278.04, 87724.81, 131692.29],  # Nuclear
+    [87486.85, 77098.86, 41866.65],   # Natural Gas
+    [8281.2, 7526.04, 19716.07],      # Geothermal
+    [1355.5, 969.57, 726.09],         # Oil
+    [3044.54, 0, 0]                   # Coal
+]
+
     # Layout using containers and columns
     kpi1, kpi2,kpi3,kpi4 = st.columns(4)
     kpi1.metric("Total Generation (GW)", f"{total_generation:.2f}", delta=None, delta_color="inverse")
