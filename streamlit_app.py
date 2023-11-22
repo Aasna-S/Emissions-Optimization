@@ -135,13 +135,13 @@ with tab1:
         )
 
 # Add deviation shapes
-    for i in range(len(data)):
+    for i in range(len(df)):
         fig1.add_shape(
             type='line',
-            x0=data.loc[i,'Technology'], 
-            x1=data.loc[i,'Technology'],
-            y0=data.loc[i,'Generation'] - data.loc[i,'Negative Generation Deviation'],
-            y1=data.loc[i,'Generation'] + data.loc[i,'Positive Generation Deviation'],
+            x0=df.loc[i,'Technology'], 
+            x1=df.loc[i,'Technology'],
+            y0=df.loc[i,'Generation'] - df.loc[i,'Negative Generation Deviation'],
+            y1=df.loc[i,'Generation'] + df.loc[i,'Positive Generation Deviation'],
             line=dict(color='red', width=2, dash='dash') 
         )
 
