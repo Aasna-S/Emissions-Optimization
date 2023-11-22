@@ -81,9 +81,9 @@ def create_dataframe_from_model_results():
 
     
 }
-    return pd.DataFrame(data)
+    return Lgst, pd.DataFrame(data)
 
-df = create_dataframe_from_model_results()
+Lgst,df = create_dataframe_from_model_results()
 
 # Dashboard layout
 st.title("Canada Power Generation Insights (Goal Programming Model)")
