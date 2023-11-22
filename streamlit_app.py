@@ -140,8 +140,8 @@ with tab1:
             line=dict(color='red', width=2, dash='dash') 
         )
 
-fig1.update_layout(showlegend=False)
-st.plotly_chart(fig1) 
+    fig1.update_layout(showlegend=False)
+    st.plotly_chart(fig1) 
         #fig_generation_deviation = px.bar(filtered_df, x='Year', y='Generation', color='Technology', barmode='group',
                                   #title=f"Generation Overview with Deviations")
         # Add lines for positive and negative deviations
