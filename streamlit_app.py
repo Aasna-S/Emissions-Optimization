@@ -216,7 +216,7 @@ with tab3:
     kpi2.metric("Total Emissions (MTCO2e)", f"{total_emission:.2f}", delta=None, delta_color="inverse")
     kpi3.metric("Total Cost (CAD)", f"${total_cost:,.2f}", delta=None, delta_color="inverse")
     kpi4.metric("Total Capacity (GWh)", f"{total_capacity:.2f}", delta=None, delta_color="inverse")
-    
+    st.markdown("### Costs by Source")
     fig3 = px.bar(df, x='Year', y='Cost', color='Technology', barmode='group')
     st.plotly_chart(fig3)
     #fig_cost_deviation = px.bar(filtered_df, x='Year', y='Cost', color='Technology', barmode='group',
