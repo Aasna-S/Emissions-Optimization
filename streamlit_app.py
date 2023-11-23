@@ -217,7 +217,7 @@ with tab3:
     kpi3.metric("Total Cost (CAD)", f"${total_cost:,.2f}", delta=None, delta_color="inverse")
     kpi4.metric("Total Capacity (GWh)", f"{total_capacity:.2f}", delta=None, delta_color="inverse")
     
-    fig3 = px.bar(filtered_df, x='Year', y='Cost', color='Technology', barmode='group')
+    fig3 = px.bar(df, x='Year', y='Cost', color='Technology', barmode='group')
     st.plotly_chart(fig3)
     #fig_cost_deviation = px.bar(filtered_df, x='Year', y='Cost', color='Technology', barmode='group',
                            # title=f"Cost Analysis with Deviations for {selected_tech}")
